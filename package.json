@@ -1,0 +1,35 @@
+{
+  "name": "couchmagick",
+  "version": "0.0.1",
+  "description": "Run ImageMagicks `convert` on CouchDB documents.",
+  "main": "index.js",
+  "preferGlobal": true,
+  "bin": "bin/couchmagick",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/null2/couchmagick"
+  },
+  "scripts": {
+    "jshint": "jshint -c .jshintrc index.js"
+  },
+  "keywords": [
+    "couchdb",
+    "worker",
+    "convert",
+    "imagemagick",
+    "image-processing",
+    "os_daemon"
+  ],
+  "author": "Johannes J. Schmidt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/null2/couchmagick/issues"
+  },
+  "homepage": "https://github.com/null2/couchmagick",
+  "dependencies": {
+    "couchdb-worker": "~3.1.1"
+  },
+  "devDependencies": {
+    "jshint": "~2.3.0"
+  }
+}
