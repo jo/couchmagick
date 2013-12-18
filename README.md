@@ -26,6 +26,8 @@ Now CouchDB takes care of the couchmagick process.
 ; Optional username and password
 username = mein-user
 password = secure
+; Number of simultanous processes. Default is 4
+processes = 8
 ; Timeout in ms. Default is 10000
 timeout = 1000
 ; Batch size. Default is 100

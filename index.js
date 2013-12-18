@@ -28,6 +28,7 @@ couchmagick.get({
   },
 
   // Batching
+  processes: pkg.name + '.processes',
   limit: pkg.name + '.limit',
   timeout: pkg.name + '.timeout'
 }, function(err, config) {
@@ -36,6 +37,7 @@ couchmagick.get({
   }
 
   // defaults
+  config.processes = config.processes || 4;
   config.timeout = config.timeout || 10000;
   config.limit = config.limit || 100;
 
@@ -81,7 +83,7 @@ couchmagick.get({
         return process.exit(0);
       }
 
-      async.eachSeries(dbs, listen, run);
+      async.eachLimit(dbs, config.processes, listen, run);
     });
   }
   run();
