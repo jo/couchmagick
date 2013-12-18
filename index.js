@@ -21,11 +21,14 @@ var noop = function() {};
 couchmagick.get({
   address: 'httpd.bind_address',
   port: 'httpd.port',
-  // auth: {
-  //   username: pkg.name + '.username',
-  //   password: pkg.name + '.password'
-  // }
-}, function(config) {
+  auth: {
+    username: pkg.name + '.username',
+    password: pkg.name + '.password'
+  }
+}, function(err, config) {
+  if (err) {
+    return process.exit(0);
+  }
 
   var auth = config.auth && config.auth.username && config.auth.password ?
     [config.auth.username, config.auth.password].join(':') :
@@ -57,9 +60,17 @@ couchmagick.get({
   }
 
   nano(couch).db.list(function(err, dbs) {
+    if (err) {
+      console.log(err);
+      couchmagick.error('Can not get _all_dbs: ' + err.description);
+
+      return process.exit(0);
+    }
+
     async.eachSeries(dbs, listen, function() {
       couchmagick.info('done.');
       process.exit(0);
+
     });
   });
 
