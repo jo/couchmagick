@@ -27,8 +27,6 @@ couchmagick.get({
   // }
 }, function(config) {
 
-  console.log(config);
-
   var auth = config.auth && config.auth.username && config.auth.password ?
     [config.auth.username, config.auth.password].join(':') :
     null;
@@ -51,13 +49,13 @@ couchmagick.get({
 
     var stream = magick(url.resolve(couch, db), options);
 
-    // stream.pipe(couchmagick.info());
-    // stream.on('error', couchmagick.error().write);
-
+    stream.on('error', couchmagick.error);
+    stream.on('data', function(data) {
+      couchmagick.info(data.response);
+    });
     stream.on('end', next);
   }
 
-  console.log('start list dbs');
   nano(couch).db.list(function(err, dbs) {
     async.eachSeries(dbs, listen, function() {
       couchmagick.info('done.');
