@@ -21,6 +21,8 @@ var noop = function() {};
 couchmagick.get({
   address: 'httpd.bind_address',
   port: 'httpd.port',
+  limit: pkg.name + '.limit',
+  timeout: pkg.name + '.timeout',
   auth: {
     username: pkg.name + '.username',
     password: pkg.name + '.password'
@@ -42,9 +44,9 @@ couchmagick.get({
   });
 
   var options = {
-    limit: 100,
+    limit: config.limit || 100,
     feed: 'continuous',
-    timeout: 1000
+    timeout: config.timeout || 1000
   };
 
   function listen(db, next) {

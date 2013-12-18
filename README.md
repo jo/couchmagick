@@ -25,6 +25,8 @@ Now CouchDB takes care of the couchmagick process.
 [couchmagick]
 user = mein-user  ; optional
 password = secure ; optional
+timeout = 10000   ; in ms. Default is 1000
+limit = 1000      ; batch size. Default is 100
 ```
 
 Imagemagick Configuration
