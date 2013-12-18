@@ -23,10 +23,13 @@ Now CouchDB takes care of the couchmagick process.
 
 ```ini
 [couchmagick]
-user = mein-user  ; optional
-password = secure ; optional
-timeout = 10000   ; in ms. Default is 1000
-limit = 1000      ; batch size. Default is 100
+; Optional username and password
+username = mein-user
+password = secure
+; Timeout in ms. Default is 10000
+timeout = 1000
+; Batch size. Default is 100
+limit = 1000
 ```
 
 Imagemagick Configuration

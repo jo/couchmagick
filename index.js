@@ -19,35 +19,42 @@ var couchmagick = daemon(process.stdin, process.stdout, function() {
 var noop = function() {};
 
 couchmagick.get({
+  // Connection
   address: 'httpd.bind_address',
   port: 'httpd.port',
-  limit: pkg.name + '.limit',
-  timeout: pkg.name + '.timeout',
   auth: {
     username: pkg.name + '.username',
     password: pkg.name + '.password'
-  }
+  },
+
+  // Batching
+  limit: pkg.name + '.limit',
+  timeout: pkg.name + '.timeout'
 }, function(err, config) {
   if (err) {
     return process.exit(0);
   }
 
-  var auth = config.auth && config.auth.username && config.auth.password ?
-    [config.auth.username, config.auth.password].join(':') :
-    null;
+  // defaults
+  config.timeout = config.timeout || 10000;
+  config.limit = config.limit || 100;
+
+  couchmagick.info('using config ' + JSON.stringify(config).replace(/"password":".*?"/, '"password":"***"'));
+
 
   var couch = url.format({
     protocol: 'http',
     hostname: config.address,
     port: config.port,
-    auth: auth
+    auth: config.auth && config.auth.username && config.auth.password ? [ config.auth.username, config.auth.password ].join(':') : null
   });
 
   var options = {
-    limit: config.limit || 100,
+    limit: config.limit,
     feed: 'continuous',
-    timeout: config.timeout || 1000
+    timeout: config.timeout
   };
+
 
   function listen(db, next) {
     couchmagick.info('Listening on ' + db);
@@ -61,20 +68,23 @@ couchmagick.get({
     stream.on('end', next);
   }
 
-  nano(couch).db.list(function(err, dbs) {
+  // main loop ;)
+  function run(err) {
     if (err) {
-      console.log(err);
-      couchmagick.error('Can not get _all_dbs: ' + err.description);
-
-      return process.exit(0);
+      process.exit(0);
     }
 
-    async.eachSeries(dbs, listen, function() {
-      couchmagick.info('done.');
-      process.exit(0);
+    nano(couch).db.list(function(err, dbs) {
+      if (err) {
+        couchmagick.error('Can not get _all_dbs: ' + err.description);
 
+        return process.exit(0);
+      }
+
+      async.eachSeries(dbs, listen, run);
     });
-  });
+  }
+  run();
 
   // TODO: listen to db changes
 });
