@@ -28,7 +28,7 @@ couchmagick.get({
   },
 
   // Batching
-  processes: pkg.name + '.processes',
+  streams: pkg.name + '.streams',
   limit: pkg.name + '.limit',
   timeout: pkg.name + '.timeout'
 }, function(err, config) {
@@ -37,11 +37,14 @@ couchmagick.get({
   }
 
   // defaults
-  config.processes = config.processes || 4;
+  config.streams = config.streams || 4;
   config.timeout = config.timeout || 10000;
   config.limit = config.limit || 100;
 
   couchmagick.info('using config ' + JSON.stringify(config).replace(/"password":".*?"/, '"password":"***"'));
+
+
+  // TODO: validate config
 
 
   var couch = url.format({
@@ -76,6 +79,9 @@ couchmagick.get({
       process.exit(0);
     }
 
+
+    // get list of all databases
+    // TODO: listen to db changes
     nano(couch).db.list(function(err, dbs) {
       if (err) {
         couchmagick.error('Can not get _all_dbs: ' + err.description);
@@ -87,6 +93,4 @@ couchmagick.get({
     });
   }
   run();
-
-  // TODO: listen to db changes
 });
