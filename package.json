@@ -29,7 +29,7 @@
   "dependencies": {
     "async": "~0.2.9",
     "event-stream": "~3.0.20",
-    "couchmagick-listen": "~1.4.1",
+    "couchmagick-listen": "~1.4.2",
     "couch-daemon": "~1.2.1",
     "nano": "~4.2.1"
   },
