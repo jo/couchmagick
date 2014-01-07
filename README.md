@@ -4,7 +4,12 @@ Run ImageMagicks `convert` on CouchDB documents.
 
 Installation
 ------------
-via npm:
+Make sure you have ImageMagick installed, eg on Debian:
+```bash
+apt-get install imagemagick
+```
+
+Install couchmagick via npm:
 
 ```bash
 npm install couchmagick -g
