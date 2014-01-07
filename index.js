@@ -28,18 +28,20 @@ couchmagick.get({
   },
 
   // Batching
-  streams: pkg.name + '.streams',
-  limit: pkg.name + '.limit',
-  timeout: pkg.name + '.timeout'
+  concurrency: pkg.name + '.concurrency',
+  streams:     pkg.name + '.streams',
+  limit:       pkg.name + '.limit',
+  timeout:     pkg.name + '.timeout'
 }, function(err, config) {
   if (err) {
     return process.exit(0);
   }
 
   // defaults
-  config.streams = config.streams || 4;
-  config.timeout = config.timeout || 10000;
-  config.limit = config.limit || 100;
+  config.concurrency = config.concurrency || 1;
+  config.streams     = config.streams     || 1;
+  config.timeout     = config.timeout     || 10000;
+  config.limit       = config.limit       || 100;
 
   couchmagick.info('using config ' + JSON.stringify(config).replace(/"password":".*?"/, '"password":"***"'));
 
@@ -50,14 +52,15 @@ couchmagick.get({
   var couch = url.format({
     protocol: 'http',
     hostname: config.address,
-    port: config.port,
-    auth: config.auth && config.auth.username && config.auth.password ? [ config.auth.username, config.auth.password ].join(':') : null
+    port:     config.port,
+    auth:     config.auth && config.auth.username && config.auth.password ? [ config.auth.username, config.auth.password ].join(':') : null
   });
 
   var options = {
-    limit: config.limit,
-    feed: 'continuous',
-    timeout: config.timeout
+    limit:       config.limit,
+    feed:        'continuous',
+    timeout:     config.timeout,
+    concurrency: config.concurrency
   };
 
 
@@ -72,6 +75,7 @@ couchmagick.get({
     });
     stream.on('end', next);
   }
+
 
   // main loop ;)
   function run(err) {
@@ -89,7 +93,7 @@ couchmagick.get({
         return process.exit(0);
       }
 
-      async.eachLimit(dbs, config.processes, listen, run);
+      async.eachLimit(dbs, config.streams, listen, run);
     });
   }
   run();
