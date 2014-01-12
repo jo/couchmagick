@@ -1,13 +1,13 @@
 {
   "name": "couchmagick",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Run ImageMagicks `convert` on CouchDB documents.",
   "main": "index.js",
   "preferGlobal": true,
   "bin": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/null2/couchmagick"
+    "url": "https://github.com/jo/couchmagick"
   },
   "scripts": {
     "jshint": "jshint -c .jshintrc index.js"
@@ -23,13 +23,13 @@
   "author": "Johannes J. Schmidt",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/null2/couchmagick/issues"
+    "url": "https://github.com/jo/couchmagick/issues"
   },
-  "homepage": "https://github.com/null2/couchmagick",
+  "homepage": "https://github.com/jo/couchmagick",
   "dependencies": {
     "async": "~0.2.9",
     "event-stream": "~3.0.20",
-    "couchmagick-listen": "~1.5.1",
+    "couchmagick-listen": "~1.5.2",
     "couch-daemon": "~1.2.1",
     "nano": "~4.2.1"
   },
