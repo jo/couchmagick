@@ -28,7 +28,9 @@ couchmagick.get({
   concurrency: pkg.name + '.concurrency',
   streams:     pkg.name + '.streams',
   limit:       pkg.name + '.limit',
-  timeout:     pkg.name + '.timeout'
+
+  changes_feed_timeout:    pkg.name + '.changes_feed_timeout',
+  convert_process_timeout: pkg.name + '.convert_process_timeout'
 }, function(err, config) {
   if (err) {
     return process.exit(0);
@@ -36,9 +38,10 @@ couchmagick.get({
 
   // defaults
   config.concurrency = config.concurrency || 1;
-  config.streams     = config.streams     || 1;
-  config.timeout     = config.timeout     || 10000;
-  config.limit       = config.limit       || 100;
+  config.streams = config.streams || 1;
+  config.limit = config.limit || 100;
+  config.changes_feed_timeout = config.changes_feed_timeout || 10000;
+  config.convert_process_timeout = config.convert_process_timeout || 60000;
 
   couchmagick.info('using config ' + JSON.stringify(config).replace(/"password":".*?"/, '"password":"***"'));
 
@@ -49,14 +52,15 @@ couchmagick.get({
   var couch = url.format({
     protocol: 'http',
     hostname: config.address,
-    port:     config.port,
-    auth:     config.auth && config.auth.username && config.auth.password ? [ config.auth.username, config.auth.password ].join(':') : null
+    port: config.port,
+    auth: config.auth && config.auth.username && config.auth.password ? [ config.auth.username, config.auth.password ].join(':') : null
   });
 
   var options = {
-    limit:       config.limit,
-    feed:        'continuous',
-    timeout:     config.timeout,
+    limit: config.limit,
+    feed: 'continuous',
+    changes_feed_timeout: config.changes_feed_timeout,
+    convert_process_timeout: config.convert_process_timeout,
     concurrency: config.concurrency
   };
 
