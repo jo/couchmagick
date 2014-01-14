@@ -6,7 +6,6 @@
 var pkg = require('./package.json');
 
 var url = require('url');
-var es = require('event-stream');
 var async = require('async');
 var nano = require('nano');
 var magick = require('couchmagick-listen');
@@ -15,8 +14,6 @@ var daemon = require('couch-daemon');
 var couchmagick = daemon(process.stdin, process.stdout, function() {
   process.exit(0);
 });
-
-var noop = function() {};
 
 couchmagick.get({
   // Connection

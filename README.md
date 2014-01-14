@@ -35,8 +35,10 @@ password = secure
 streams = 8
 ; Concurrency level (number of simultanous convert processes). Default is 1
 concurrency = 8
-; Timeout in ms. Default is 10000
-timeout = 1000
+; Timeout for convert process in ms. Default is 60000 (1min)
+convert_process_timeout = 1000
+; Timeout for changes feed in ms. Default is 10000
+changes_feed_timeout = 1000
 ; Batch size. Default is 100
 limit = 10
 ```
@@ -50,20 +52,10 @@ databases which have such a design document.
   "_id": "_design/my-couchmagick-config",
   "_rev": "1-a653b27246b01cf9204fa9f5dee7cc64",
   "couchmagick": {
-    "filter": "function(doc) { return doc.type === 'post'; }",
     "versions": {
       "thumbnail": {
-        "filter": "function(doc, name) { return doc.display && doc.display.indexOf('overview') > -1; }",
-        "id": "{id}/thumbnail",
-        "name": "{basename}-thumbnail.jpg",
-        "content_type": "image/jpeg",
         "args": [
-          "-",
-          "-resize", "x100",
-          "-quality", "75",
-          "-colorspace", "sRGB",
-          "-strip",
-          "jpg:-"
+          "-resize", "x100"
         ]
       }
     }
@@ -71,7 +63,7 @@ databases which have such a design document.
 }
 ```
 
-See [couchmagick-stream](https://github.com/null2/couchmagick-stream) for available options;
+See [couchmagick-stream](https://github.com/null2/couchmagick-stream) for available options.
 
 
 Contributing
