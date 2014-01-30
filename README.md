@@ -2,9 +2,18 @@ couchmagick
 ===========
 Run ImageMagicks `convert` on CouchDB documents.
 
+couchmagick runs as an [os_daemon](http://docs.couchdb.org/en/1.5.x/config/externals.html#os_daemons),
+which means that CouchDB manages the process and you can configure it using CouchDBs configuration mechanism, which is both a huge win.
+
+The versions and commandline arguments are defined in design documents under a `couchmagick` section.
+
+couchmagicks Stream based implementation provides low memory footprint.
+
 Installation
 ------------
-Make sure you have ImageMagick installed, eg on Debian:
+The installation of couchmagick is dead simple.
+
+Make sure you have `ImageMagick` installed, eg on Debian:
 ```bash
 apt-get install imagemagick
 ```
