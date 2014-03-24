@@ -41,8 +41,9 @@ Now CouchDB takes care of the couchmagick process.
 username = mein-user
 password = secure
 ; Number of simultanous streams of changes feeds in parallel. Default is 1.
+; Increase it to the number of your databases, to get best performance.
 streams = 1
-; Concurrency level (number of simultanous convert processes). Default is 1
+; Concurrency level (number of simultanous convert processes per stream). Default is 1.
 concurrency = 1
 ; Timeout for convert process in ms. Default is 60000 (1min)
 convert_process_timeout = 60000
