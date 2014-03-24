@@ -40,16 +40,16 @@ Now CouchDB takes care of the couchmagick process.
 ; Optional username and password
 username = mein-user
 password = secure
-; Number of simultanous streams. Default is 1.
-streams = 8
+; Number of simultanous streams of changes feeds in parallel. Default is 1.
+streams = 1
 ; Concurrency level (number of simultanous convert processes). Default is 1
-concurrency = 8
+concurrency = 1
 ; Timeout for convert process in ms. Default is 60000 (1min)
-convert_process_timeout = 1000
+convert_process_timeout = 60000
 ; Timeout for changes feed in ms. Default is 10000
-changes_feed_timeout = 1000
+changes_feed_timeout = 10000
 ; Batch size. Default is 100
-limit = 10
+limit = 100
 ```
 
 Imagemagick Configuration
