@@ -37,10 +37,10 @@ couchmagick.get({
   }
 
   // defaults
+  config.streams = config.streams || 20;
   config.concurrency = config.concurrency || 1;
-  config.streams = config.streams || 1;
   config.limit = config.limit || 100;
-  config.changes_feed_timeout = config.changes_feed_timeout || 10000;
+  config.changes_feed_timeout = config.changes_feed_timeout || 60000;
   config.convert_process_timeout = config.convert_process_timeout || 60000;
 
   couchmagick.info('using config ' + JSON.stringify(config).replace(/"password":".*?"/, '"password":"***"'));
