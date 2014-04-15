@@ -60,8 +60,12 @@ convert_process_timeout = 60000
 ; have a changes feed open to each of them.
 changes_feed_timeout = 60000
 ; Batch size. This limits the batches the workers will take from the changes feed.
-; It basically translates to a limit parameter on the changes feed. Default is 100
-limit = 100
+; It basically translates to a limit parameter on the changes feed. Default is 0.
+; IMPORTANT NOTE: currently you should leave it at 0 unless other feeds than
+; `continuous` are supported by couchmagick, because the feed does not stop
+; after `limit` changes has been arrived.
+; See https://github.com/jo/couchmagick/issues/7
+limit = 0
 ```
 
 Imagemagick Configuration
