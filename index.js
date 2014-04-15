@@ -72,7 +72,9 @@ couchmagick.get({
 
     stream.on('error', couchmagick.error);
     stream.on('data', function(data) {
-      couchmagick.info(data.response);
+      if (data.response) {
+        couchmagick.info(data.response);
+      }
     });
     stream.on('end', next);
   }
