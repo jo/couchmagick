@@ -14,7 +14,7 @@
   },
   "keywords": [
     "couchdb",
-    "worker",
+    "couchdb-worker",
     "convert",
     "imagemagick",
     "image-processing",
