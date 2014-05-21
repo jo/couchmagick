@@ -31,7 +31,7 @@ couchmagick --username bernd --password secure --whitelist projects --concurrenc
 ```
 
 ## Daemon Configuration
-Add couchmagick to `os_daemons` config section in local.ini:
+Add couchmagick to `os_daemons` config section (in local.ini):
 
 ```ini
 [os_daemons]
