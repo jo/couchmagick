@@ -1,6 +1,6 @@
 {
   "name": "couchmagick",
-  "version": "1.8.3",
+  "version": "2.0.0",
   "description": "Run ImageMagicks `convert` on CouchDB documents.",
   "main": "index.js",
   "preferGlobal": true,
@@ -10,7 +10,7 @@
     "url": "https://github.com/jo/couchmagick"
   },
   "scripts": {
-    "jshint": "jshint -c .jshintrc index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "couchdb",
@@ -27,12 +27,11 @@
   },
   "homepage": "https://github.com/jo/couchmagick",
   "dependencies": {
-    "async": "~0.2.9",
-    "couchmagick-listen": "~1.6.0",
-    "couch-daemon-bridge": "^1.2.2",
-    "nano": "~4.2.1"
-  },
-  "devDependencies": {
-    "jshint": "~2.3.0"
+    "couch-daemon": "^1.2.10",
+    "strformat": "0.0.3",
+    "docuri": "^1.1.0",
+    "async": "^0.9.0",
+    "nano": "^5.9.1",
+    "highland": "^1.25.1"
   }
 }
