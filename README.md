@@ -97,9 +97,15 @@ Content-Type of the resulting attachment. Default is `image/jpeg`.
 ### `id`
 The document id where the version is stored. Defaults to `{id}/{version}`.
 
-Can have the following placeholders:
+Can have the following [strformat placeholders](https://github.com/fhellwig/strformat):
 * `id` - the original doc id
 * `parts` - array of the id splitted at `/`
+* `docuri` - [docuri](https://github.com/jo/docuri) parsed id object:
+ * `docuri.type` - index part of docuri
+ * `docuri.id` - id part of docuri
+ * `docuri.subtype` - subtype part of docuri
+ * `docuri.version` - version part of docuri
+ * `docuri.index` - index part of docuri
 * `version` - name of the version
 
 ### `name`
@@ -108,6 +114,12 @@ The attachment name of the version. Default is `{basename}-{version}{extname}`.
 Can have placeholders:
 * `id` - the original doc id
 * `parts` - array of the id splitted at `/`
+* `docuri` - [docuri](https://github.com/jo/docuri) parsed id object:
+ * `docuri.type` - index part of docuri
+ * `docuri.id` - id part of docuri
+ * `docuri.subtype` - subtype part of docuri
+ * `docuri.version` - version part of docuri
+ * `docuri.index` - index part of docuri
 * `version` - name of the version
 * `name` - original attachment name, eg `this/is/my-image.jpg`
 * `extname` - file extenstion of the original attachment name, eg `.jpg`
