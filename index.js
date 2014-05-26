@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* couchmagick: Run ImageMagicks `convert` on CouchDB documents.
+/* Couchmagick: Run ImageMagicks `convert` on CouchDB documents.
  *
  * (c) 2014 Johannes J. Schmidt, null2 GmbH, Berlin 
  */

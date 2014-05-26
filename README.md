@@ -1,7 +1,7 @@
-# couchmagick
+# Couchmagick
 Run ImageMagicks `convert` on CouchDB documents.
 
-couchmagick runs as an [os_daemon](http://docs.couchdb.org/en/1.5.x/config/externals.html#os_daemons),
+Couchmagick runs as an [os_daemon](http://docs.couchdb.org/en/1.5.x/config/externals.html#os_daemons),
 which means that CouchDB manages the process and you can configure it using CouchDBs configuration mechanism, which is both a huge win.
 
 Versions and commandline arguments which are passed to `convert` are defined in design documents under a `couchmagick` section.
@@ -9,16 +9,16 @@ Versions and commandline arguments which are passed to `convert` are defined in 
 couchmagicks stream based implementation provides low memory footprint.
 
 ## Installation
-The installation of couchmagick is dead simple.
+The installation of Couchmagick is dead simple.
 
 Make sure you have `ImageMagick` installed, eg on Debian:   
 `apt-get install imagemagick`
 
-Install couchmagick via npm:   
+Install Couchmagick via npm:   
 `npm install couchmagick -g`
 
 ## Commandline Client
-You can run couchmagick from the commandline:
+You can run Couchmagick from the commandline:
 ```shell
 couchmagick
 ```
@@ -31,14 +31,14 @@ couchmagick --username bernd --password secure --whitelist projects --concurrenc
 ```
 
 ## Daemon Configuration
-Add couchmagick to `os_daemons` config section (eg. in local.ini):
+Add Couchmagick to `os_daemons` config section (eg. in local.ini):
 
 ```ini
 [os_daemons]
 couchmagick = couchmagick
 ```
 
-Now CouchDB takes care of the couchmagick process.
+Now CouchDB takes care of the Couchmagick process.
 
 ```ini
 [couchmagick]
@@ -61,7 +61,7 @@ blacklist = _users,_replicator
 ```
 
 ## Imagemagick Configuration
-Add a `couchmagick` property to a design document. couchmagick will process all
+Add a `couchmagick` property to a design document. Couchmagick will process all
 databases which have such a design document.
 
 ### Minimal Example
