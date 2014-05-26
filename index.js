@@ -8,7 +8,6 @@ var pkg = require('./package.json');
 var couchmagickstream = require('./lib/couchmagick-stream');
 
 var daemon = require('couch-daemon');
-var _ = require('highland');
 
 
 daemon({
@@ -16,7 +15,7 @@ daemon({
   version: pkg.version,
   include_docs: true
 }, function(url, options) {
-  var magick = _(couchmagickstream(url, options));
+  var magick = couchmagickstream(url, options);
 
   return function(source) {
     return source.pipe(magick);
