@@ -6,7 +6,7 @@ which means that CouchDB manages the process and you can configure it using Couc
 
 Versions and commandline arguments which are passed to `convert` are defined in design documents under a `couchmagick` section.
 
-couchmagicks stream based implementation provides low memory footprint.
+Couchmagicks [couch-daemon](https://github.com/jo/couch-daemon) stream based implementation provides low memory footprint.
 
 ## Installation
 The installation of Couchmagick is dead simple.
