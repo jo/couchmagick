@@ -1,6 +1,6 @@
 {
   "name": "couchmagick",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Couchmagick runs ImageMagicks `convert` on CouchDB documents.",
   "main": "index.js",
   "preferGlobal": true,
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/jo/couchmagick",
   "dependencies": {
-    "couch-daemon": "^1.2.10",
+    "couch-daemon": "^1.4.0",
     "strformat": "0.0.3",
     "docuri": "^1.1.0",
     "async": "^0.9.0",

@@ -54,10 +54,12 @@ concurrency = 1
 ; for the usual image resizes, increase it if you deal with really large images and complex
 ; imagemagick processing.
 timeout = 60000
-; Only documents in the databases above are processed (seperate with comma)
-; whitelist = mydb,otherdb
-; Ignore the following databases (again comma seperated list)
-blacklist = _users,_replicator
+; Only documents in the databases below are processed (separate with comma).
+; Regular expressions are allowed:
+;whitelist = mydb,otherdb,/^special-.*/
+; Ignore the following databases (again comma separated list)
+; Regular expressions are again allowed:
+blacklist = /^_/
 ```
 
 ## Imagemagick Configuration
