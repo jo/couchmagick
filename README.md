@@ -60,6 +60,9 @@ timeout = 60000
 ; Ignore the following databases (again comma separated list)
 ; Regular expressions are again allowed:
 blacklist = /^_/
+; Only attachments which match any of the mime types below are processed (separate with comma).
+; Default is /^image\// Regular expressions are allowed:
+;source_content_types = /^image\//,application/postscript
 ```
 
 ## Imagemagick Configuration
