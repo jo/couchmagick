@@ -1,6 +1,6 @@
 {
   "name": "couchmagick",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Couchmagick runs ImageMagicks `convert` on CouchDB documents.",
   "main": "index.js",
   "preferGlobal": true,
